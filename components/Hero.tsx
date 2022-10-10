@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Button from "./Button"
 
 
 const Hero = () => {
@@ -11,8 +12,8 @@ const Hero = () => {
                     <span className="block">Driven By Values</span>
                 </h1>
 
-                <div>
-                    {/* <Button title='Buy Now'/> */}
+                <div className="space-x-8">
+                    <Button title='Buy Now' />
                     <a className="link">Learn More</a>
                 </div>
             </div>
@@ -25,3 +26,4 @@ const Hero = () => {
 }
 
 export default Hero
+
