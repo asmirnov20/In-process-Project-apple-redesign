@@ -6,6 +6,9 @@ import Hero from '../components/Hero'
 import { fetchCategories, fetchProducts } from '../lib/utils'
 import { Tab } from '@headlessui/react'
 import Product from '../components/Product'
+import Cart from '../components/Cart'
+import { useSelector } from 'react-redux'
+import { selectCartItems } from '../redux/cartSlice'
 
 interface Props {
   categories: Category[],
@@ -14,6 +17,8 @@ interface Props {
 
 const Home = ({ categories, products }: Props) => {
 
+  const items = useSelector(selectCartItems)
+  console.log(items);
   const filterProducts = (category: number) => {
     // filter by category
     return products
@@ -31,6 +36,8 @@ const Home = ({ categories, products }: Props) => {
       </Head>
 
       <Header />
+      <Cart />
+
       <main className='relative h-[200vh] bg-[#E7ECEE]'>
         <Hero />
       </main>

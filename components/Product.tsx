@@ -1,6 +1,10 @@
 import { ShoppingCartIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
+import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 import { urlFor } from '../lib/client'
+import { onAdd } from '../redux/cartSlice'
+import { useState } from 'react'
 
 interface Props {
     product: Product
@@ -8,8 +12,14 @@ interface Props {
 
 const Product = ({ product }: Props) => {
 
+    const dispatch = useDispatch()
+    const [quantity, setquantity] = useState(1)
     const addToCart = () => {
+        dispatch(onAdd(product))
 
+        toast.success(`${product.title} added to Cart`, {
+            position: 'bottom-center',
+        })
     }
 
     return (

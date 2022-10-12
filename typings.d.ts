@@ -18,6 +18,7 @@ interface Product {
     _rev: string;
     _type: 'product';
     price: number;
+    // quantity: number;
     category: {
         _ref: string;
         _type: 'reference';
