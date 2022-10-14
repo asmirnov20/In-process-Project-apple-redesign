@@ -7,15 +7,15 @@ import { onAdd } from '../redux/cartSlice'
 import { useState } from 'react'
 
 interface Props {
-    product: Product
+    product: Product,
 }
 
 const Product = ({ product }: Props) => {
 
     const dispatch = useDispatch()
-    const [quantity, setquantity] = useState(1)
+    const [quantity, setQuantity] = useState(1)
     const addToCart = () => {
-        dispatch(onAdd(product))
+        dispatch(onAdd({ product, quantity }))
 
         toast.success(`${product.title} added to Cart`, {
             position: 'bottom-center',

@@ -12,13 +12,14 @@ interface Category {
 }
 
 interface Product {
+    map: any;
     _id: string;
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
     _type: 'product';
     price: number;
-    // quantity: number;
+    quantity: number;
     category: {
         _ref: string;
         _type: 'reference';

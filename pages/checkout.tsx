@@ -36,7 +36,7 @@ const checkout = () => {
                     : (
                         <div className='mx-5 md:mx-8'>
                             {items.map(product => (
-                                <CheckoutProduct id={product._id} key={product._id} item={product} />
+                                <CheckoutProduct id={product?._id} key={product?._id} item={product} />
                             ))}
 
                             {/* Bottom part */}
