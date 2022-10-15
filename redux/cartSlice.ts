@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './store'
-import { stat } from 'fs'
+import { useDispatch } from 'react-redux'
 
 export interface CartState {
     items: Product[]
@@ -37,20 +37,40 @@ export const cartSlice = createSlice({
         removeFromCart: (state: CartState, action: PayloadAction<{ id: string }>) => {
             const newCartItems = state.items.filter(item => item?._id !== action.payload.id)
             state.items = newCartItems;
+        },
+        toggleItemQuantity: (state: CartState, action: PayloadAction<{ id: string, value: string }>) => {
+            const { id, value } = action.payload
+            const impactedProduct: any = state.items.find((item: Product) => item._id === id)
+
+            if (value === 'increment') {
+                state.items = state.items.map((item: Product) =>
+                    item._id === id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item)
+            }
+            if (value === 'decrement') {
+                if (impactedProduct.quantity > 1) {
+                    state.items = state.items.map((item: Product) =>
+                        item._id === id
+                            ? { ...item, quantity: item.quantity - 1 }
+                            : item)
+                }
+            }
         }
     }
 })
 
 // Actions
-export const { onAdd, removeFromCart } = cartSlice.actions;
+export const { onAdd, removeFromCart, toggleItemQuantity } = cartSlice.actions;
 
 // Selectors
 export const selectCartItems = (state: RootState) => state.cart.items
+export const selectItemQuantity = (state: RootState, id: string) => state.cart.items.find((item: Product) => item._id === id)?.map((item: Product) => item.quantity)
 export const selectTotalQuantity = (state: RootState) => state.cart.items.reduce((total: number, item: Product) => (total += item.quantity), 0)
 export const selectItemsWithID = (state: RootState, id: string) =>
     state.cart.items.filter((item: Product) => item._id === id)
 
 export const selectCartTotalPrice = (state: RootState) =>
-    state.cart.items.reduce((total: number, item: Product) => (total += item.price), 0)
+    state.cart.items.reduce((total: number, item: Product) => (total += item.price * item.quantity), 0)
 
 export default cartSlice.reducer;
