@@ -20,8 +20,9 @@ const checkout = () => {
     const [loading, setLoading] = useState(false)
 
     const createCheckoutSession = async () => {
-        setLoading(true)
 
+        setLoading(true)
+        
         const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON('/api/checkout_sessions', { items: items })
 
         // Internal Server Error

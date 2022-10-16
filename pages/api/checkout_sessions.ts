@@ -1,17 +1,13 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 import { urlFor } from "../../lib/client";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    // https://github.com/stripe/stripe-node#configuration
     apiVersion: "2022-08-01",
 });
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    
     if (req.method === "POST") {
         const items: Product[] = req.body.items;
 
