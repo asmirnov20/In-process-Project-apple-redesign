@@ -1,6 +1,5 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetServerSideProps} from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import { fetchCategories, fetchProducts } from '../lib/utils'
@@ -9,16 +8,17 @@ import Product from '../components/Product'
 import Cart from '../components/Cart'
 import { useSelector } from 'react-redux'
 import { selectCartItems } from '../redux/cartSlice'
+import { getSession } from 'next-auth/react'
+import { Session } from 'next-auth'
 
 interface Props {
   categories: Category[],
-  products: Product[]
+  products: Product[],
+  session: Session | null
 }
 
 const Home = ({ categories, products }: Props) => {
 
-  const items = useSelector(selectCartItems)
-  console.log(items);
   const filterProducts = (category: number) => {
     // filter by category
     return products
@@ -80,15 +80,17 @@ const Home = ({ categories, products }: Props) => {
 export default Home
 
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
 
   const categories = await fetchCategories()
   const products = await fetchProducts()
+  const session = await getSession(context)
 
   return {
     props: {
       categories,
-      products
+      products,
+      session
     }
   }
 }

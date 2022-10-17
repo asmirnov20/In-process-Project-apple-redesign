@@ -9,6 +9,7 @@ import { fetchStripeItems } from '../lib/utils/fetchStripeItems'
 import Currency from 'react-currency-formatter'
 import Button from "../components/Button"
 import SuccessProduct from '../components/SuccessProduct'
+import { useSession } from "next-auth/react";
 
 interface Props {
     products: StripeProduct[]
@@ -20,6 +21,7 @@ const success = ({ products }: Props) => {
     const { session_id } = router.query
     const [mounted, setMounted] = useState(false)
     const [showOrderSummary, setShowOrderSummary] = useState(false)
+    const { data: session } = useSession()
 
     const subtotal = products.reduce((total: number, item: StripeProduct) => total += item.price.unit_amount / 100, 0)
 
@@ -73,8 +75,8 @@ const success = ({ products }: Props) => {
                                 Order #{session_id?.slice(-5)}
                             </p>
                             <h4 className="text-lg">
-                                Thank you{" "}
-                               
+                                Thank you,{" "}
+                                {session ? session.user?.name?.split(" ")[0] : "Guest"}
                             </h4>
                         </div>
                     </div>

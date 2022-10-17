@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { toggleItemQuantity, removeFromCart } from "../redux/cartSlice"
+import { increment, decrement, removeFromCart } from "../redux/cartSlice"
 
 interface Props {
     quantity: number,
@@ -10,10 +10,10 @@ const QuantityCounter = ({ quantity, id }: Props) => {
 
     const dispatch = useDispatch()
 
-    const increaseNumber = () => dispatch(toggleItemQuantity({ id, value: "increment" }))
+    const increaseNumber = () => dispatch(increment({ id }))
 
     const decreaseNumber = () => {
-        dispatch(toggleItemQuantity({ id, value: "decrement" }))
+        dispatch(decrement({ id }))
         if (quantity == 1) {
             dispatch(removeFromCart({ id }))
         }

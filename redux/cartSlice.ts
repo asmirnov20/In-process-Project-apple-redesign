@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './store'
-import { useDispatch } from 'react-redux'
 
 export interface CartState {
     items: Product[]
@@ -34,34 +33,38 @@ export const cartSlice = createSlice({
                 state.items = [...state.items, { ...product, quantity }]
             }
         },
+
         removeFromCart: (state: CartState, action: PayloadAction<{ id: string }>) => {
             const newCartItems = state.items.filter(item => item?._id !== action.payload.id)
             state.items = newCartItems;
         },
-        toggleItemQuantity: (state: CartState, action: PayloadAction<{ id: string, value: string }>) => {
-            const { id, value } = action.payload
+
+        increment: (state: CartState, action: PayloadAction<{ id: string }>) => {
+            const { id } = action.payload
+
+            state.items = state.items.map((item: Product) =>
+                item._id === id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item)
+        },
+
+        decrement: (state: CartState, action: PayloadAction<{ id: string }>) => {
+            const { id } = action.payload
             const impactedProduct: any = state.items.find((item: Product) => item._id === id)
 
-            if (value === 'increment') {
+            if (impactedProduct.quantity > 1) {
                 state.items = state.items.map((item: Product) =>
                     item._id === id
-                        ? { ...item, quantity: item.quantity + 1 }
+                        ? { ...item, quantity: item.quantity - 1 }
                         : item)
             }
-            if (value === 'decrement') {
-                if (impactedProduct.quantity > 1) {
-                    state.items = state.items.map((item: Product) =>
-                        item._id === id
-                            ? { ...item, quantity: item.quantity - 1 }
-                            : item)
-                }
-            }
+
         }
     }
 })
 
 // Actions
-export const { onAdd, removeFromCart, toggleItemQuantity } = cartSlice.actions;
+export const { onAdd, removeFromCart, increment, decrement } = cartSlice.actions;
 
 // Selectors
 export const selectCartItems = (state: RootState) => state.cart.items

@@ -3,12 +3,14 @@ import Link from "next/link"
 import { SearchIcon, ShoppingBagIcon, UserIcon, } from '@heroicons/react/outline'
 import { useSelector } from "react-redux"
 import { selectCartItems, selectTotalQuantity } from "../redux/cartSlice"
+import { signIn, signOut, useSession } from "next-auth/react";
 
 
 const Header = () => {
 
     const items = useSelector(selectCartItems)
     const quantity = useSelector(selectTotalQuantity)
+    const { data: session } = useSession()
 
     return (
         <header className="sticky top-0 z-30 flex w-full items-center justify-between bg-[#E7EcEE] p-4">
@@ -45,12 +47,23 @@ const Header = () => {
                     </div>
                 </Link>
 
-                <UserIcon className="headerIcon" />
+                {session ? (
+                    <Image
+                        src={
+                            session.user?.image ||
+                            "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                        }
+                        alt=""
+                        className="cursor-pointer rounded-full"
+                        width={34}
+                        height={34}
+                        onClick={() => signOut()}
+                    />
+                ) : (
+                    <UserIcon className="headerIcon" onClick={() => signIn()} />
+                )}
             </div>
-
-
-
-        </header>
+        </header >
     )
 }
 
