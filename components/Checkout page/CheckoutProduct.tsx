@@ -1,9 +1,9 @@
 import { ChevronDownIcon } from "@heroicons/react/outline"
 import Image from "next/image"
-import { urlFor } from '../lib/client'
+import { urlFor } from '../../lib/client'
 import Currency from 'react-currency-formatter'
 import { useDispatch } from "react-redux"
-import { removeFromCart } from "../redux/cartSlice"
+import { removeFromCart } from "../../redux/cartSlice"
 import { useState } from 'react'
 import toast from "react-hot-toast"
 import QuantityCounter from "./QuantityCounter"
