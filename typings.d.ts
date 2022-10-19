@@ -1,3 +1,10 @@
+interface HeroBanner {
+    _id: string,
+    _type: 'banner'
+    image: Image
+    title: string,
+}
+
 interface Category {
     _id: string;
     _type: 'category';

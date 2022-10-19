@@ -48,7 +48,8 @@ const CheckoutOptions = ({ totalPrice, items }: Props) => {
                 How would you like to check out?
             </h4>
             <div className="flex flex-col gap-4 md:flex-row">
-                <div className="order-2 flex flex-1 flex-col items-center rounded-xl bg-gray-200 p-8 py-12 text-center">
+
+                <div className="w-3/4 mx-auto order-2 flex flex-1 flex-col items-center rounded-xl bg-gray-200 p-8 py-12 text-center">
                     <h4 className="mb-4 flex flex-col text-xl font-semibold">
                         <span>Pay Monthly</span>
                         <span>with Apple Card</span>
@@ -63,7 +64,7 @@ const CheckoutOptions = ({ totalPrice, items }: Props) => {
                     </p>
                 </div>
 
-                <div className="flex flex-1 flex-col items-center space-y-8 rounded-xl bg-gray-200 p-8 py-12 md:order-2">
+                <div className="w-3/4 mx-auto  flex flex-1 flex-col items-center space-y-8 rounded-xl bg-gray-200 p-8 py-12 md:order-2">
                     <h4 className="mb-4 flex flex-col text-xl font-semibold">
                         Pay in full
                         <span>

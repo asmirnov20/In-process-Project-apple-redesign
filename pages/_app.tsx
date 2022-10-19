@@ -7,11 +7,13 @@ import { SessionProvider } from "next-auth/react"
 import { Session } from "next-auth";
 import { PersistGate } from 'redux-persist/integration/react'
 
+
 function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   return (
     <SessionProvider session={pageProps.session}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+      
           <Toaster />
           <Component {...pageProps} />
         </PersistGate>

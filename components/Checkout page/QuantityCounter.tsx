@@ -20,7 +20,7 @@ const QuantityCounter = ({ quantity, id }: Props) => {
     }
 
     return (
-        <div className="h-10 w-32 flex">
+        <div className="h-10 w-32 flex justify-center">
             <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1 ">
                 <button className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none" onClick={decreaseNumber}>
                     <span className="m-auto text-2xl font-thin" >
