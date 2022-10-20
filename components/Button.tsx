@@ -5,13 +5,13 @@ interface Props {
     loading?: boolean;
     padding?: string;
     noIcon?: boolean;
-    hidden?: boolean
+    hidden?: boolean,
 }
 
 const Button = ({ title, onClick, width, loading, padding, noIcon, hidden }: Props) => {
     return (
         <button
-            className={`${hidden ? 'hidden' : null} ease group relative z-30 box-border flex ${width ? width : "w-auto"} ${padding} cursor-pointer items-center justify-center overflow-hidden rounded bg-indigo-600 bg-gradient-to-r from-pink-500 to-violet-500 px-8 py-3 font-bold text-white transition-all duration-300 focus: outline-none hover:scale-105`}
+            className={`${hidden ? 'hidden' : null} ease group relative z-30 box-border flex ${width ? width : "w-auto"} ${padding} cursor-pointer items-center justify-center overflow-hidden rounded bg-indigo-600 bg-gradient-to-r from-pink-500 to-violet-500 px-8 py-3 font-bold text-white transition-all duration-300 focus: outline-none hover:scale-105 `}
             onClick={onClick}
         >
 
@@ -38,7 +38,7 @@ const Button = ({ title, onClick, width, loading, padding, noIcon, hidden }: Pro
 
                 {loading ? "Loading..." : title}
             </span>
-        </button>
+        </button >
     );
 }
 

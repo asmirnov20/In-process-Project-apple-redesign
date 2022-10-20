@@ -5,6 +5,9 @@ import { GetServerSideProps } from "next"
 import { fetchStripeItems } from '../lib/utils/fetchStripeItems'
 import OrderConfirmed from "../components/Success page/OrderConfirmed"
 import OrderSummary from "../components/Success page/OrderSummary"
+import { persistor } from "../redux/store"
+import { useDispatch } from "react-redux"
+import { clearAll } from "../redux/cartSlice"
 
 
 interface Props {
@@ -14,9 +17,16 @@ interface Props {
 const success = ({ products }: Props) => {
 
     const [mounted, setMounted] = useState(false)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setMounted(true)
+    }, [])
+
+    // clearing user's purchases
+    useEffect(() => {
+        localStorage.clear()
+        dispatch(clearAll())
     }, [])
 
     return (

@@ -3,7 +3,6 @@ import Header from '../components/Header'
 import Hero from '../components/Home page/Hero'
 import CartIcon from '../components/Home page/CartIcon'
 import TabGroup from '../components/Home page/TabGroup';
-import Product from '../components/Home page/Product'
 import { Session } from 'next-auth'
 import type { GetServerSideProps } from 'next'
 import { fetchCategories, fetchProducts } from '../lib/utils'
@@ -21,19 +20,8 @@ interface Props {
 
 const Home = ({ heroBanner, categories, products }: Props) => {
 
-  // filter by category and render requested products
-  const filterProducts = (category: number) => {
-
-    return products
-      .filter(item => item.category._ref === categories[category]._id)
-      .map(item =>
-
-        <Product product={item} key={item._id} />
-      )
-  }
-
   return (
-    <div>
+    <motion.div exit={{ opacity: 0 }}>
       <Head>
         <title>Apple shop</title>
         <link rel="icon" href="/favicon.ico" />
@@ -46,11 +34,11 @@ const Home = ({ heroBanner, categories, products }: Props) => {
       </main>
 
       <section className="relative z-40 -mt-[100vh] min-h-screen bg-[#1B1B1B]">
-        <TabGroup categories={categories} filterProducts={filterProducts} />
+        <TabGroup categories={categories} products={products} />
         <CartIcon />
       </section>
 
-    </div>
+    </motion.div>
   );
 };
 

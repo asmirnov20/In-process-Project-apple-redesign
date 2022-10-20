@@ -5,6 +5,7 @@ import Button from "../Button"
 import { useRouter } from "next/router"
 import { useSession } from "next-auth/react";
 import { useMediaQuery } from "react-responsive"
+import { motion } from "framer-motion"
 
 
 const OrderConfirmed = () => {

@@ -4,6 +4,7 @@ import SuccessProduct from './SuccessProduct'
 import { useMediaQuery } from "react-responsive"
 import { useEffect, useState } from "react"
 import Charge from "../Charge"
+import { motion } from "framer-motion"
 
 interface Props {
     products: StripeProduct[]
@@ -27,7 +28,7 @@ const OrderSummary = ({ products }: Props) => {
     const subtotal = products.reduce((total: number, item: StripeProduct) => total += item.price.unit_amount / 100, 0)
 
     return (
-        <section className="overflow-y-scroll border-y border-l border-gray-300 bg-[#FAFAFA] lg:order-2 lg:col-span-4 lg:h-screen lg:border-y-0 lg:pr-16 lg:pt-44 xl:pl-16 ">
+        <section className="overflow-y-scroll border-y border-l border-gray-300 bg-[#FAFAFA] lg:order-2 lg:col-span-4 lg:h-screen lg:border-y-0 lg:pr-16 lg:pt-28 xl:pl-16">
 
             <div className={`w-full ${showOrderSummary && "border-b"} border-gray-300 text-sm`}>
                 <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-6">

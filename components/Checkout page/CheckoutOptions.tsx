@@ -54,10 +54,10 @@ const CheckoutOptions = ({ totalPrice, items }: Props) => {
                         <span>Pay Monthly</span>
                         <span>with Apple Card</span>
                         <span>
-                            $283.16/mo. at 0% APR<sup className="-top-1">◊</sup>
+                            $283.16/mo. 
                         </span>
                     </h4>
-                    <Button title="Check Out with Apple Card Monthly Installments" />
+                    <Button title="Check Out with Apple Card" />
                     <p className="mt-2 max-w-[240px] text-[13px]">
                         $0.00 due today, which includes applicable full-price
                         items, down payments, shipping, and taxes.
@@ -65,7 +65,7 @@ const CheckoutOptions = ({ totalPrice, items }: Props) => {
                 </div>
 
                 <div className="w-3/4 mx-auto  flex flex-1 flex-col items-center space-y-8 rounded-xl bg-gray-200 p-8 py-12 md:order-2">
-                    <h4 className="mb-4 flex flex-col text-xl font-semibold">
+                    <h4 className="mb-4 flex flex-col text-xl font-semibold w-[50%] mx-auto text-center">
                         Pay in full
                         <span>
                             <Currency quantity={totalPrice} currency="USD" />

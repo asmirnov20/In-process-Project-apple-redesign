@@ -4,6 +4,9 @@ import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { urlFor } from '../../lib/client'
 import { onAdd } from '../../redux/cartSlice'
+import { motion } from 'framer-motion'
+import { productsFadeUp } from '../../animation/animations'
+
 
 interface Props {
     product: Product,
@@ -23,7 +26,10 @@ const Product = ({ product }: Props) => {
     }
 
     return (
-        <div className="flex h-fit w-[300px] select-none flex-col space-y-3 rounded-xl bg-[#35383C] p-8 md:h-[500px] md:w-[400px] md:p-10">
+        <motion.div
+            className="flex h-fit w-[300px] select-none flex-col space-y-3 rounded-xl bg-[#35383C] p-8 md:h-[500px] md:w-[400px] md:p-10"
+            whileInView={productsFadeUp.whileInView}
+        >
             <div className="relative h-64 w-full md:h-72">
                 <Image
                     src={urlFor(image[0]).url()}
@@ -45,7 +51,7 @@ const Product = ({ product }: Props) => {
                     <ShoppingCartIcon className="h-8 w-8 text-white " />
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './store'
+import { PURGE } from "redux-persist";
+import storage from 'redux-persist/es/storage';
 
 export interface CartState {
     items: Product[]
@@ -55,12 +57,16 @@ export const cartSlice = createSlice({
                 item._id === id
                     ? { ...item, quantity: item.quantity - 1 }
                     : item)
+        },
+
+        clearAll: (state: CartState) => {
+            state.items = []
         }
     }
 })
 
 // Actions
-export const { onAdd, removeFromCart, increment, decrement } = cartSlice.actions;
+export const { onAdd, removeFromCart, increment, decrement, clearAll } = cartSlice.actions;
 
 // Selectors
 export const selectCartItems = (state: RootState) => state.cart.items

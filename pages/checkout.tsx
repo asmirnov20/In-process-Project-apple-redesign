@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import CheckoutProduct from '../components/Checkout page/CheckoutProduct'
 import Charge from '../components/Charge'
 import CheckoutOptions from '../components/Checkout page/CheckoutOptions'
+import { motion } from 'framer-motion'
 
 
 const checkout = () => {
@@ -15,7 +16,7 @@ const checkout = () => {
     const totalPrice = useSelector(selectCartTotalPrice)
 
     return (
-        <div className='min-h-screen overflow-hidden bg-[#E7ECEE]'>
+        <motion.div className='min-h-screen overflow-hidden bg-[#E7ECEE]'>
 
             <Header />
 
@@ -35,10 +36,10 @@ const checkout = () => {
                                 <CheckoutProduct id={product?._id} key={product?._id} item={product} />
                             ))}
 
-                            <div className="my-12 mt-6 ml-auto">
+                            <motion.div className="my-12 mt-6 ml-auto" layout>
                                 <Charge totalPrice={totalPrice} />
                                 <CheckoutOptions totalPrice={totalPrice} items={items} />
-                            </div>
+                            </motion.div>
                         </div>
                     )
                     : (
@@ -50,7 +51,7 @@ const checkout = () => {
                         </div>
                     )}
             </main >
-        </div >
+        </motion.div >
 
 
     )
