@@ -5,7 +5,6 @@ import { GetServerSideProps } from "next"
 import { fetchStripeItems } from '../lib/utils/fetchStripeItems'
 import OrderConfirmed from "../components/Success page/OrderConfirmed"
 import OrderSummary from "../components/Success page/OrderSummary"
-import { persistor } from "../redux/store"
 import { useDispatch } from "react-redux"
 import { clearAll } from "../redux/cartSlice"
 
@@ -29,6 +28,11 @@ const success = ({ products }: Props) => {
         dispatch(clearAll())
     }, [])
 
+    const priceFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    })
+
     return (
         <div>
             <header className="mx-auto max-w-xl">
@@ -46,7 +50,7 @@ const success = ({ products }: Props) => {
             {mounted && (
                 <main className="grid grid-cols-1 lg:grid-cols-9">
                     <OrderConfirmed />
-                    <OrderSummary products={products} />
+                    <OrderSummary products={products} priceFormatter={priceFormatter} />
                 </main>
             )}
         </div>

@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import Currency from 'react-currency-formatter'
 
 interface Props {
-    product: StripeProduct
+    product: StripeProduct,
+    priceFormatter: Intl.NumberFormat
 }
 
-const SuccessProduct = ({ product }: Props) => {
+const SuccessProduct = ({ product, priceFormatter }: Props) => {
     return (
         <div className="flex items-center space-x-4 text-sm font-medium">
             <div className="relative flex h-16 w-16 items-center justify-center rounded-md border border-gray-300 bg-[#F1F1F1] text-xs text-white">
@@ -22,10 +22,7 @@ const SuccessProduct = ({ product }: Props) => {
             </div>
             <p className="flex-1">{product.description}</p>
             <p>
-                <Currency
-                    quantity={product.price.unit_amount / 100}
-                    currency={product.currency}
-                />
+                {priceFormatter.format(product.price.unit_amount / 100)}
             </p>
         </div>
     )

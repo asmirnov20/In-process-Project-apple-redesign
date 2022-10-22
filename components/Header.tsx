@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { SearchIcon, ShoppingBagIcon, UserIcon, } from '@heroicons/react/outline'
+import { ShoppingBagIcon, UserIcon, } from '@heroicons/react/outline'
 import { useSelector } from "react-redux"
 import { selectCartItems, selectTotalQuantity } from "../redux/cartSlice"
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -34,7 +34,6 @@ const Header = () => {
             </div>
 
             <div className="flex items-center justify-center gap-x-4 md:w-1/5 ">
-                <SearchIcon className="headerIcon duration-200 hover:scale-110" />
                 <Link href='/checkout'>
                     <div className="relative cursor-pointer duration-200 hover:scale-110">
                         {items.length > 0 && (

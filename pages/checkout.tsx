@@ -15,8 +15,13 @@ const checkout = () => {
     const router = useRouter()
     const totalPrice = useSelector(selectCartTotalPrice)
 
+    const priceFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    })
+
     return (
-        <motion.div className='min-h-screen overflow-hidden bg-[#E7ECEE]'>
+        <motion.div className='min-h-screen overflow-hidden bg-[#E7ECEE]' >
 
             <Header />
 
@@ -33,12 +38,12 @@ const checkout = () => {
                     ? (
                         <div className='mx-5 md:mx-8'>
                             {items.map(product => (
-                                <CheckoutProduct id={product?._id} key={product?._id} item={product} />
+                                <CheckoutProduct id={product?._id} key={product?._id} item={product} priceFormatter={priceFormatter} />
                             ))}
 
                             <motion.div className="my-12 mt-6 ml-auto" layout>
-                                <Charge totalPrice={totalPrice} />
-                                <CheckoutOptions totalPrice={totalPrice} items={items} />
+                                <Charge totalPrice={totalPrice} priceFormatter={priceFormatter} />
+                                <CheckoutOptions totalPrice={totalPrice} items={items} priceFormatter={priceFormatter} />
                             </motion.div>
                         </div>
                     )

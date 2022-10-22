@@ -6,17 +6,22 @@ interface Props {
     padding?: string;
     noIcon?: boolean;
     hidden?: boolean,
+    disabled?: boolean
 }
 
-const Button = ({ title, onClick, width, loading, padding, noIcon, hidden }: Props) => {
+const Button = ({ title, onClick, width, loading, padding, noIcon, hidden, disabled }: Props) => {
     return (
         <button
-            className={`${hidden ? 'hidden' : null} ease group relative z-30 box-border flex ${width ? width : "w-auto"} ${padding} cursor-pointer items-center justify-center overflow-hidden rounded bg-indigo-600 bg-gradient-to-r from-pink-500 to-violet-500 px-8 py-3 font-bold text-white transition-all duration-300 focus: outline-none hover:scale-105 `}
+            className={`${hidden ? 'hidden' : null} ease group relative z-30 box-border flex ${width ? width : "w-auto"} ${padding} ${disabled ? null : 'cursor-pointer'}items-center justify-center overflow-hidden rounded bg-indigo-600 bg-gradient-to-r from-pink-500 to-violet-500 px-8 py-3 font-bold text-white transition-all duration-300 focus: outline-none ${disabled ? null : 'hover:scale-105'} ${disabled ? 'opacity-50' : null}`}
             onClick={onClick}
         >
-
-            <span className="absolute bottom-0 right-0 -mb-8 -mr-5 h-20 w-8 translate-x-1 rotate-45 transform bg-white opacity-20 transition-all duration-300 ease-out group-hover:-translate-x-4"></span>
-            <span className="absolute top-0 left-0 -mt-1 -ml-12 h-8 w-20 -translate-x-1 -rotate-45 transform bg-white opacity-20 transition-all duration-300 ease-out group-hover:translate-x-4"></span>
+            {disabled ? null
+                : (<div>
+                    <span className="absolute bottom-0 right-0 -mb-8 -mr-5 h-20 w-8 translate-x-1 rotate-45 transform bg-white opacity-20 transition-all duration-300 ease-out group-hover:-translate-x-4"></span>
+                    <span className="absolute top-0 left-0 -mt-1 -ml-12 h-8 w-20 -translate-x-1 -rotate-45 transform bg-white opacity-20 transition-all duration-300 ease-out group-hover:translate-x-4"></span>
+                </div>
+                )
+            }
 
             <span className="relative z-20 flex items-center font-semibold">
                 {noIcon && (

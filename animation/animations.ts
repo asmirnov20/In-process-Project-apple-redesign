@@ -11,14 +11,6 @@ export const pageTransition = {
 }
 
 export const productsFadeUp = {
-    // initial: {
-    //     y: 150,
-    //     opacity: 0
-    // },
-    // animate: {
-    //     y: 0,
-    //     opacity: 1
-    // }
     whileInView: {
         y: [150, 0],
         opacity: [0, 1],

@@ -1,27 +1,41 @@
-# Next.js + Tailwind CSS Example
+<h1 align='center'>Aplle shop</h1> 
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+<h2 align='center'><a href='https://apple-shop-iota.vercel.app' target='_blank'>Deployed Project</a></h2> 
 
-## Deploy your own
+## **Description**
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+<p align='justify'>
+This is a responsive and animated e-commerce app which is built with TypeScript and
+NextJS. 
+</p>
+<p align='justify'>
+In this project I used Tailwind CSS for adaptive design, Redux Toolkit to manage the global state of the application - to add, remove and change the quantity of items in the shopping cart.
+</p>
+<p align='justify'>
+I integrated authentication in this project with the help of Google’s API OAuth 2.0 protocol.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+The  Sanity CMS was used to manage products that are available for sale on the site. 
+Finally, I've used Stripe API as a payments infrastructure.
+</p>
+<p align='justify'>
+Finally, I've used Stripe API as a payments infrastructure.
+</p>
 
-## How to use
+## **Tech stack:**
+<ul>
+<li>TypeScript</li>
+<li>Tailwind CSS</li>
+<li>Redux Toolkit</li>
+<li>React (NextJS)</li>
+<li>Sanity</li>
+<li>Stripe</li>
+<li>Framer Motion</li>
+</ul>
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## **Images:**
+![hero](./public/hero-section.jpg)
+![hero](./public/products-section.jpg)
+![hero](./public/sign-in.jpg)
+![hero](./public/cart-products.jpg)
+![hero](./public/cart-bottom.jpg)
+![hero](./public/order.jpg)

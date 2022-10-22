@@ -1,11 +1,10 @@
-import Currency from 'react-currency-formatter'
-
 interface Props {
     totalPrice: number,
-    textStyle?: string
+    textStyle?: string,
+    priceFormatter: Intl.NumberFormat
 }
 
-const Charge = ({ totalPrice, textStyle }: Props) => {
+const Charge = ({ totalPrice, textStyle, priceFormatter }: Props) => {
 
     return (
         <div className="divide-y divide-gray-300">
@@ -13,7 +12,7 @@ const Charge = ({ totalPrice, textStyle }: Props) => {
                 <div className={`flex justify-between ${textStyle ? textStyle : null}`}>
                     <p className={`${textStyle ? 'text-[gray]' : null}`}>Subtotal:</p>
                     <p className="font-medium">
-                        <Currency quantity={totalPrice} />
+                        <span>{priceFormatter.format(totalPrice)}</span>
                     </p>
                 </div>
                 <div className={`flex justify-between ${textStyle ? textStyle : null}`}>
@@ -23,7 +22,7 @@ const Charge = ({ totalPrice, textStyle }: Props) => {
                 <div className={`flex justify-between ${textStyle ? textStyle : null}`}>
                     <p className={`${textStyle ? 'text-[gray]' : null}`}>Shipping:</p>
                     <p className="font-medium">
-                        <Currency quantity={20} currency="USD" />
+                        <span>$20</span>
                     </p>
                 </div>
             </div>
@@ -31,7 +30,7 @@ const Charge = ({ totalPrice, textStyle }: Props) => {
                 <p>Total</p>
                 <p className="flex items-center gap-x-2 text-xs text-[gray]">
                     <span className="text-xl font-medium text-black">
-                        <Currency quantity={totalPrice + 20} />
+                        <span>{priceFormatter.format(totalPrice + 20)}</span>
                     </span>
                 </p>
             </div>

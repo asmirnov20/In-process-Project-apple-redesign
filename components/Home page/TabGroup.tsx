@@ -10,7 +10,7 @@ interface Props {
 
 const TabGroup = ({ categories, products }: Props) => {
 
-    const [focused, setFocused] = useState('');
+    const [focused, setFocused] = useState<string | null>();
     const [selected, setSelected] = useState(categories[0].title);
 
     // filter by category and render requested products

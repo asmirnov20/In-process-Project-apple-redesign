@@ -1,5 +1,4 @@
 import Button from '../Button'
-import Currency from 'react-currency-formatter'
 import { useState } from 'react'
 import Stripe from 'stripe'
 import { fetchPostJSON } from '../../lib/utils/api-helpers'
@@ -7,10 +6,11 @@ import getStripe from '../../lib/utils/getStripe'
 
 interface Props {
     totalPrice: number,
-    items: Product[]
+    items: Product[],
+    priceFormatter: Intl.NumberFormat
 }
 
-const CheckoutOptions = ({ totalPrice, items }: Props) => {
+const CheckoutOptions = ({ totalPrice, items, priceFormatter }: Props) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -54,10 +54,10 @@ const CheckoutOptions = ({ totalPrice, items }: Props) => {
                         <span>Pay Monthly</span>
                         <span>with Apple Card</span>
                         <span>
-                            $283.16/mo. 
+                            $283.16/mo.
                         </span>
                     </h4>
-                    <Button title="Check Out with Apple Card" />
+                    <Button title="Check Out with Apple Card" disabled={true} />
                     <p className="mt-2 max-w-[240px] text-[13px]">
                         $0.00 due today, which includes applicable full-price
                         items, down payments, shipping, and taxes.
@@ -68,7 +68,7 @@ const CheckoutOptions = ({ totalPrice, items }: Props) => {
                     <h4 className="mb-4 flex flex-col text-xl font-semibold w-[50%] mx-auto text-center">
                         Pay in full
                         <span>
-                            <Currency quantity={totalPrice} currency="USD" />
+                            <span>{priceFormatter.format(totalPrice)}</span>
                         </span>
                     </h4>
 

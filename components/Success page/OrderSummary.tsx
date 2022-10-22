@@ -1,16 +1,15 @@
 import { ChevronDownIcon, ChevronUpIcon, ShoppingCartIcon } from "@heroicons/react/outline/"
-import Currency from 'react-currency-formatter'
 import SuccessProduct from './SuccessProduct'
 import { useMediaQuery } from "react-responsive"
 import { useEffect, useState } from "react"
 import Charge from "../Charge"
-import { motion } from "framer-motion"
 
 interface Props {
-    products: StripeProduct[]
+    products: StripeProduct[],
+    priceFormatter: Intl.NumberFormat
 }
 
-const OrderSummary = ({ products }: Props) => {
+const OrderSummary = ({ products, priceFormatter }: Props) => {
 
     const [showOrderSummary, setShowOrderSummary] = useState(false)
 
@@ -46,7 +45,7 @@ const OrderSummary = ({ products }: Props) => {
                     </button>
 
                     <p className="text-xl font-medium text-black">
-                        <Currency quantity={subtotal + 20} />
+                        {priceFormatter.format(subtotal + 20)}
                     </p>
                 </div>
             </div>
@@ -55,11 +54,11 @@ const OrderSummary = ({ products }: Props) => {
                 <div className="mx-auto max-w-xl divide-y border-gray-300 px-4 py-4 lg:mx-0 lg:max-w-lg lg:pl-12 lg:py-12">
                     <div className="space-y-4 pb-4">
                         {products.map(product => (
-                            <SuccessProduct product={product} key={product.id} />
+                            <SuccessProduct product={product} key={product.id} priceFormatter={priceFormatter} />
                         ))}
                     </div>
 
-                    <Charge totalPrice={subtotal} textStyle={'text-sm'} />
+                    <Charge totalPrice={subtotal} textStyle={'text-sm'} priceFormatter={priceFormatter} />
                 </div>
             )}
         </section>
