@@ -57,8 +57,6 @@ const checkout = () => {
                     )}
             </main >
         </motion.div >
-
-
     )
 }
 

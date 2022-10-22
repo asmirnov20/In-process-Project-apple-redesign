@@ -3,5 +3,8 @@ module.exports = {
   reactStrictMode: false,
   images: {
     domains: ['rb.gy', 'cdn.sanity.io', 'lh3.googleusercontent.com'],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   }
 }
